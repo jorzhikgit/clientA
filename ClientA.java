@@ -19,7 +19,7 @@ public class ClientA {
     private static InetAddress mediatorIP;
     private static int mediatorTcpDiscussionPort;
     private static int mediatorTcpPunchPort;
-
+    private static int myLocalport;
     private Socket socketDiscussion, socketClientPunch;
     private ServerSocket socketServerPunch;
 
@@ -49,6 +49,7 @@ public class ClientA {
         try {
             socketDiscussion = new Socket(ip, tcpDiscussionPort);
             socketClientPunch = new Socket(ip, tcpPunchPort);
+            myLocalport = socketClientPunch.getLocalPort();
         } catch (IOException ex) {
             System.err.println("Не могу создать сокет: " + ex);
         }
@@ -106,7 +107,7 @@ public class ClientA {
                         outDiscussion.flush();
 
                         //Received all infos needed -> proceed hole punching
-                        proceedHolePunching(InetAddress.getByName(tokens[3].trim()), Integer.parseInt(tokens[1].trim()), Integer.valueOf(tokens[2]));
+                        proceedHolePunching(InetAddress.getByName(tokens[3].trim()), Integer.parseInt(tokens[5].trim()), myLocalport);   
                     }catch (IOException ioe){
                         ioe.printStackTrace();
                     }
