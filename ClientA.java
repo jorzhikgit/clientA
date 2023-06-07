@@ -107,7 +107,7 @@ public class ClientA {
                         outDiscussion.flush();
 
                         //Received all infos needed -> proceed hole punching
-                        proceedHolePunching(InetAddress.getByName(tokens[3].trim()), Integer.parseInt(tokens[5].trim()), myLocalport);   
+                        proceedHolePunching(InetAddress.getByName(tokens[3].trim()), Integer.parseInt(tokens[1].trim()), myLocalport);   
                     }catch (IOException ioe){
                         ioe.printStackTrace();
                     }
